@@ -18,6 +18,21 @@ const server = expressApp.listen(
   }
 );
 
+expressApp.get("/api/welcome", async (req, res) => {
+  // Create Adaptive Card template
+  const template = new ACData.Template(notificationTemplate);
+  const cardPayload = template.expand({
+    $root: {
+      title: "Welcome to the Conveyor Teams Bot!",
+      body: "Thanks for installing this bot. I'm here to help!"
+    }
+  });
+
+  // Send welcome message
+  await notificationApp.installation.notifySuccess(cardPayload);
+  res.status(200).send();
+});
+
 // HTTP trigger to send notification. You need to add authentication / authorization for this API. Refer https://aka.ms/teamsfx-notification for more details.
 expressApp.post("/api/notification", async (req, res) => {
   const pageSize = 100;
@@ -29,19 +44,22 @@ expressApp.post("/api/notification", async (req, res) => {
     );
     const installations = pagedData.data;
     continuationToken = pagedData.continuationToken;
+    console.log(req.body);
 
     for (const target of installations) {
       await target.sendAdaptiveCard(
         new ACData.Template(notificationTemplate).expand({
           $root: {
-            title: "New Event Occurred!",
-            appName: "Contoso App Notification",
-            description: `This is a sample http-triggered notification to ${target.type}`,
-            notificationUrl: "https://aka.ms/teamsfx-notification-new",
+            title: req.body.subject,
+            appName: "Conveyor App Notification",
+            description: req.body.message,
+            ...(req.body.notificationUrl && { 
+              notificationUrl: req.body.notificationUrl,
+              notificationUrlText: req.body.notificationUrlText || "View Details"
+            })
           },
         })
       );
-
       /****** To distinguish different target types ******/
       /** "Channel" means this bot is installed to a Team (default to notify General channel)
         if (target.type === NotificationTargetType.Channel) {

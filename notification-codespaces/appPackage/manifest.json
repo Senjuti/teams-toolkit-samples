@@ -1,30 +1,31 @@
 {
     "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.17/MicrosoftTeams.schema.json",
     "manifestVersion": "1.17",
-    "version": "1.0.0",
-    "id": "${{TEAMS_APP_ID}}",
+    "version": "1.0.2",
+    "id": "4db634a1-24d3-4203-8b95-5575c8789397",
     "developer": {
-        "name": "Teams App, Inc.",
-        "websiteUrl": "https://www.example.com",
-        "privacyUrl": "https://www.example.com/privacy",
-        "termsOfUseUrl": "https://www.example.com/termofuse"
+        "name": "Conveyor Inc.",
+        "mpnId": "",
+        "websiteUrl": "https://www.conveyor.com",
+        "privacyUrl": "https://www.conveyor.com/legal/privacy",
+        "termsOfUseUrl": "https://www.conveyor.com/legal/terms-of-service"
     },
     "icons": {
         "color": "color.png",
         "outline": "outline.png"
     },
     "name": {
-        "short": "notification-app${{APP_NAME_SUFFIX}}",
-        "full": "Full name for notification-app"
+        "short": "Conveyor",
+        "full": ""
     },
     "description": {
-        "short": "Short description of notification-app",
-        "full": "Full description of notification-app"
+        "short": "Teams integration for sending Customer Trust information.",
+        "full": "Conveyor application integration for Teams that sends updates regarding Customer Trust activities such as security questionnaires."
     },
-    "accentColor": "#FFFFFF",
+    "accentColor": "#33c69F",
     "bots": [
         {
-            "botId": "${{BOT_ID}}",
+            "botId": "7395209c-fa94-4eea-a840-ff521844521e",
             "scopes": [
                 "personal",
                 "team",

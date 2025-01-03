@@ -11,7 +11,8 @@ provision:
   - uses: teamsApp/create
     with:
       # Teams app name
-      name: notification-app${{APP_NAME_SUFFIX}}
+      # name: notification-app${{APP_NAME_SUFFIX}}
+      name: Conveyor
     # Write the information of created resources into environment file for
     # the specified environment variable(s).
     writeToEnvironmentFile:
@@ -21,7 +22,8 @@ provision:
   - uses: botAadApp/create
     with:
       # The Azure Active Directory application's display name
-      name: notification-app${{APP_NAME_SUFFIX}}
+      # name: notification-app${{APP_NAME_SUFFIX}}
+      name: Conveyor
     writeToEnvironmentFile:
       # The Azure Active Directory application's client id created for bot.
       botId: BOT_ID
@@ -32,7 +34,7 @@ provision:
   - uses: botFramework/create
     with:
       botId: ${{BOT_ID}}
-      name: notification-app
+      name: conveyor
       messagingEndpoint: https://${{CODESPACE_NAME}}-3978.${{GITHUB_CODESPACES_PORT_FORWARDING_DOMAIN}}/api/messages
       description: ""
       channels:
